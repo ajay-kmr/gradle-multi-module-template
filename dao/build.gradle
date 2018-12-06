@@ -22,6 +22,7 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 configurations {
@@ -33,5 +34,11 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    //    Dependency for H2 Database
+    runtime('com.h2database:h2')
+//    Dependency for MySql Database
+    runtime('mysql:mysql-connector-java')
+    compile("org.hibernate:hibernate-envers:5.3.3.Final")
+    providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
     compile project(':common-model')
 }
