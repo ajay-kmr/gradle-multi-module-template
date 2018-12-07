@@ -4,3 +4,37 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
+
+buildscript {
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    flatDir {
+        dirs 'lib'
+    }
+}
+apply plugin: 'java'
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    compile project(':admin')
+    compile project(':common-model')
+    compile project(':dao')
+    compile project(':rest')
+
+}

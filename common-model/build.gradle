@@ -23,6 +23,9 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
+    flatDir {
+        dirs 'lib'
+    }
 }
 
 configurations {

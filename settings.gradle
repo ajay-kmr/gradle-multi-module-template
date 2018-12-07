@@ -8,7 +8,4 @@
  */
 
 rootProject.name = 'gradle-multi-module-template'
-include 'admin'
-include 'common-model'
-include 'dao'
-include 'rest'
+include 'admin', 'common-model', 'dao', 'rest'

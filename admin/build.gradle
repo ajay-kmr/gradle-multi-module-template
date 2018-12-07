@@ -23,6 +23,10 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
+    flatDir {
+        dirs 'lib'
+    }
 }
 
 configurations {
@@ -35,6 +39,6 @@ dependencies {
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
-    compile project(':common-model')
+//    compile project(':common-model')
     compile project(':dao')
 }
