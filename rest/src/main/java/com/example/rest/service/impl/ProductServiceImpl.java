@@ -29,7 +29,7 @@ public class ProductServiceImpl extends BaseServiceImpl implements ProductServic
     public ResponseDTO<ProductDTO> createProduct(ProductDTO requestDTO) {
         ResponseDTO<ProductDTO> responseDTO = new ResponseDTO<ProductDTO>(Boolean.FALSE, getMessage("unable.to.save.record"), requestDTO);
         //TODO:- Validate Product eg check for duplicate product etc
-        Optional<Catalog> catalog = catalogRepoService.findOne(requestDTO.getCatalogId());
+        Optional<Catalog> catalog = catalogRepoService.findById(requestDTO.getCatalogId());
         if (!catalog.isPresent()) {
             responseDTO.setMessage(getMessage("invalid.catalog.id"));
         } else {
@@ -51,7 +51,7 @@ public class ProductServiceImpl extends BaseServiceImpl implements ProductServic
     public ResponseDTO<ProductDTO> removeProduct(ProductDTO requestDTO) {
         ResponseDTO<ProductDTO> responseDTO = new ResponseDTO<ProductDTO>(Boolean.FALSE, getMessage("unable.to.remove.catalog.product"), requestDTO);
         //TODO:- Validate Product eg check for duplicate product etc
-        Optional<Product> productOptional = productRepoService.findOne(requestDTO.getId());
+        Optional<Product> productOptional = productRepoService.findById(requestDTO.getId());
         if (!productOptional.isPresent()) {
             responseDTO.setMessage(getMessage("invalid.product.id"));
         } else {

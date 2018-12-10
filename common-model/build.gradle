@@ -12,8 +12,8 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+//apply plugin: 'org.springframework.boot'
+//apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
 
 group = 'com.example'
@@ -33,9 +33,9 @@ configurations {
 }
 
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 //    compile('org.projectlombok:lombok')
     providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
     compile group: 'commons-lang', name: 'commons-lang', version: '2.2'

@@ -103,6 +103,14 @@ public abstract class BaseRepoService<T extends BaseEntity, ID extends Serializa
         return getRepository().getOne(id);
     }
 
+
+    public Optional<T> findById(ID id) {
+        if (id == null) {
+            return null;
+        }
+        return getRepository().findById(id);
+    }
+
     public Optional<T> findOne(ID id) {
         if (id == null) {
             return null;
