@@ -1,4 +1,4 @@
-package com.example.rest.conf;
+package com.example.admin.conf;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

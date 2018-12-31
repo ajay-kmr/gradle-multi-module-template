@@ -1,6 +1,7 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.1.RELEASE'
+//        springBootVersion = '2.1.1.RELEASE'
+        springBootVersion = '2.0.0.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -12,9 +13,9 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
-//apply plugin: 'org.springframework.boot'
-//apply plugin: 'io.spring.dependency-management'
-apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+//apply plugin: 'war'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -43,6 +44,13 @@ dependencies {
 //    runtime('mysql:mysql-connector-java')
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.13'
     compile("org.hibernate:hibernate-envers:5.3.3.Final")
-    providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
     compile project(':common-model')
+}
+
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
 }

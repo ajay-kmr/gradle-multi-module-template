@@ -1,6 +1,7 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.1.RELEASE'
+//        springBootVersion = '2.1.1.RELEASE'
+        springBootVersion = '2.0.0.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -13,9 +14,9 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
-//apply plugin: 'org.springframework.boot'
-//apply plugin: 'io.spring.dependency-management'
-apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+//apply plugin: 'war'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -28,7 +29,6 @@ repositories {
         dirs 'lib'
     }
 }
-
 configurations {
     providedRuntime
 }
@@ -38,7 +38,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
-    providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
-//    compile project(':common-model')
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
+    compile project(':common-model')
     compile project(':dao')
 }
