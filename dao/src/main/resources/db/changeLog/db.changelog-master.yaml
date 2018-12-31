@@ -1,0 +1,3 @@
+databaseChangeLog:
+	-includeAll:
+		Path: db/changeLog/changes # relative path wrt resources folder

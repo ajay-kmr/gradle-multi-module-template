@@ -1,0 +1,11 @@
+apply plugin: "org.liquibase.gradle"
+liquibase {
+    activities {
+        main {
+            changeLogFile 'src/mainresources/db/changeLog/db.changelog-master.yaml'
+            url "jdbc:mysql://localhost:3306/databaseName"
+            username 'root'
+            password 'Test123!'
+        }
+    }
+}
