@@ -39,6 +39,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     compile('org.projectlombok:lombok')
     compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+
 }
 
 bootJar {
