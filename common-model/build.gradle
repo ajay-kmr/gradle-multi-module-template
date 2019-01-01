@@ -1,7 +1,7 @@
 buildscript {
     ext {
-//        springBootVersion = '2.1.1.RELEASE'
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.1.1.RELEASE'
+//        springBootVersion = '2.0.0.RELEASE'
 
     }
     repositories {
@@ -41,6 +41,7 @@ dependencies {
 //    compile('org.projectlombok:lombok')
     compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
     compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+
 }
 
 bootJar {
