@@ -3,12 +3,11 @@ package com.example.rest.conf;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.apachecommons.CommonsLog;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 import java.util.TimeZone;
@@ -19,17 +18,15 @@ import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_US
 
 @Configuration
 @CommonsLog
-@ComponentScan(basePackages = "com.example")
-public class WebMVCConfigurer extends WebMvcConfigurerAdapter {
+public class WebMVCConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        super.addCorsMappings(registry);
         registry.addMapping("/**");
     }
 
     @Override
-    public void configureMessageConverters(
+    public void extendMessageConverters(
             List<HttpMessageConverter<?>> converters) {
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = (MappingJackson2HttpMessageConverter) converters.stream()
                 .filter(it -> MappingJackson2HttpMessageConverter.class.isAssignableFrom(it.getClass()))
@@ -43,6 +40,5 @@ public class WebMVCConfigurer extends WebMvcConfigurerAdapter {
         objectMapper.enable(READ_ENUMS_USING_TO_STRING);
         objectMapper.enable(WRITE_ENUMS_USING_TO_STRING);
         converters.add(mappingJackson2HttpMessageConverter);
-        super.configureMessageConverters(converters);
     }
 }
