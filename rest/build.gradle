@@ -1,7 +1,7 @@
 buildscript {
     ext {
-//        springBootVersion = '2.1.1.RELEASE'
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.1.1.RELEASE'
+//        springBootVersion = '2.0.0.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -32,10 +32,10 @@ configurations {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    compile('org.projectlombok:lombok')
     compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
     compile project(':common-model')
     compile project(':dao')

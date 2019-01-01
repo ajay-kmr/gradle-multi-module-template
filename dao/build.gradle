@@ -1,7 +1,7 @@
 buildscript {
     ext {
-//        springBootVersion = '2.1.1.RELEASE'
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.1.1.RELEASE'
+//        springBootVersion = '2.0.0.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -34,17 +34,16 @@ configurations {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     //    Dependency for H2 Database
     runtime('com.h2database:h2:1.4.197')
 //    Dependency for MySql Database
-//    runtime('mysql:mysql-connector-java')
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.13'
+    runtime('mysql:mysql-connector-java')
     compile("org.hibernate:hibernate-envers:5.3.3.Final")
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
+    compile('org.projectlombok:lombok')
     compile project(':common-model')
 }
 

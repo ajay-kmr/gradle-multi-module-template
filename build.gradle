@@ -8,8 +8,8 @@
 // ************ STEP 1 ***************
 buildscript {
     ext {
-//        springBootVersion = '2.1.1.RELEASE'
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.1.1.RELEASE'
+//        springBootVersion = '2.0.0.RELEASE'
     }
     repositories {
 // ************ STEP 2 ***************
@@ -60,5 +60,11 @@ subprojects {
             }
         }
 
+        implementation 'org.javassist:javassist'
+        constraints {
+            implementation('org.javassist:javassist:3.24.0-GA') {
+                because "Getting java.lang.ClassNotFoundException: javassist.bytecode.ClassFile with previous version when springBootVersion updated to  2.1.1.RELEASE from 2.0.0.RELEASE"
+            }
+        }
     }
 }
