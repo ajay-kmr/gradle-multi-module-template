@@ -16,10 +16,10 @@ publishing {
         myArtifact(MavenPublication) {
             from components.java
             afterEvaluate {
-                groupId = 'org.gradle.sample' // If not given, default to project/module group Id
-//                artifactId = jar.baseName
-                artifactId = 'admin-sample' // If not given, default to project/module artifact Id
-                version = '1.1' // If not given, default to project/module version
+//                groupId = 'org.gradle.sample' // If not given, default to project/module group Id
+                artifactId = jar.baseName
+//                artifactId = 'admin-sample' // If not given, default to project/module artifact Id
+//                version = '1.1' // If not given, default to project/module version
             }
 
             pom {

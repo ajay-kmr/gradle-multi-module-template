@@ -9,3 +9,5 @@
 
 rootProject.name = 'gradle-multi-module-template'
 include 'admin', 'rest', 'dao', 'common-model'
+//enableFeaturePreview('STABLE_PUBLISHING') for maven-publish plugin
+enableFeaturePreview('STABLE_PUBLISHING')
