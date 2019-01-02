@@ -1,37 +1,8 @@
-buildscript {
-    ext {
-        springBootVersion = '2.1.1.RELEASE'
-//        springBootVersion = '2.0.0.RELEASE'
-
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
+bootJar {
+    enabled = false
 }
-
-apply plugin: 'java'
-apply plugin: 'eclipse-wtp'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-//apply plugin: 'war'
-
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-    jcenter()
-    flatDir {
-        dirs 'lib'
-    }
-}
-
-configurations {
-    providedRuntime
+jar {
+    enabled = true
 }
 
 dependencies {
@@ -40,11 +11,4 @@ dependencies {
     compile('org.projectlombok:lombok')
     compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
 
-}
-
-bootJar {
-    enabled = false
-}
-jar {
-    enabled = true
 }
