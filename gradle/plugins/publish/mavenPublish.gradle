@@ -17,8 +17,8 @@ publishing {
             from components.java
             afterEvaluate {
 //                groupId = 'org.gradle.sample' // If not given, default to project/module group Id
-                artifactId = jar.baseName
-//                artifactId = 'admin-sample' // If not given, default to project/module artifact Id
+//                artifactId = jar.baseName
+//                artifactId = 'admin-sample' // If not given, default to project/module artifact Id which is same as jar.baseName
 //                version = '1.1' // If not given, default to project/module version
             }
 
@@ -56,7 +56,7 @@ publishing {
     repositories {
         maven {
             name = "MyArtifact"
-            def releasesRepoUrl = "$buildDir/ repos / releases "
+            def releasesRepoUrl = "$buildDir/repos/releases "
             def snapshotsRepoUrl = "$buildDir/repos/snapshots"
 //            url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
             url = version.endsWith('SNAPSHOT') ? releasesRepoUrl : snapshotsRepoUrl
