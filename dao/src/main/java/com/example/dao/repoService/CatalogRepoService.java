@@ -1,17 +1,17 @@
 package com.example.dao.repoService;
 
-import com.example.dao.entity.Catalog;
-import com.example.dao.repository.CatalogRepository;
 import com.example.commonmodel.dto.CatalogDTO;
 import com.example.commonmodel.dto.DataTableRequestDTO;
 import com.example.commonmodel.dto.DataTableResponseDTO;
+import com.example.dao.entity.Catalog;
+import com.example.dao.repository.CatalogRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.apachecommons.CommonsLog;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -20,10 +20,10 @@ import java.util.List;
 
 @Service
 @CommonsLog
+@AllArgsConstructor
 public class CatalogRepoService extends BaseRepoService<Catalog, Long> {
 
-    @Autowired
-    CatalogRepository catalogRepository;
+    private CatalogRepository catalogRepository;
 
     @Override
     protected JpaRepository<Catalog, Long> getRepository() {

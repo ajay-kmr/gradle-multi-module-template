@@ -1,10 +1,11 @@
 package com.example.dao.repoService;
 
-import com.example.dao.entity.Product;
-import com.example.dao.repository.ProductRepository;
 import com.example.commonmodel.dto.DataTableRequestDTO;
 import com.example.commonmodel.dto.DataTableResponseDTO;
 import com.example.commonmodel.dto.ProductDTO;
+import com.example.dao.entity.Product;
+import com.example.dao.repository.ProductRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.apachecommons.CommonsLog;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
@@ -12,7 +13,6 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.hibernate.transform.Transformers;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -21,10 +21,10 @@ import java.util.List;
 
 @Service
 @CommonsLog
+@AllArgsConstructor
 public class ProductRepoService extends BaseRepoService<Product, Long> {
 
-    @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
 
     @Override
     protected JpaRepository<Product, Long> getRepository() {

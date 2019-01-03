@@ -2,11 +2,11 @@ package com.example.dao.repoService;
 
 import com.example.dao.entity.User;
 import com.example.dao.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.apachecommons.CommonsLog;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.CriteriaSpecification;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +18,10 @@ import static org.hibernate.criterion.Restrictions.eq;
 
 @Service
 @CommonsLog
+@AllArgsConstructor
 public class UserRepoService extends BaseRepoService<User, Long> {
 
-    @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     protected JpaRepository<User, Long> getRepository() {

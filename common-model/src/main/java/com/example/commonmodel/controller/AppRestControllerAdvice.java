@@ -1,14 +1,11 @@
-package com.example.rest.web.controller;
+package com.example.commonmodel.controller;
 
 import com.example.commonmodel.dto.ErrorDTO;
 import com.example.commonmodel.dto.ResponseDTO;
+import com.example.commonmodel.service.MessageHelperServiceImpl;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.MessageSourceResolvable;
-import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.FileNotFoundException;
@@ -27,40 +25,13 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 @CommonsLog
-public class BaseController {
+@RestControllerAdvice
+public class AppRestControllerAdvice {
 
     private static final String EMPTY = StringUtils.EMPTY;
-
-    @Autowired
-    private MessageSource messageSource;
-
-
     private static final String VALIDATION_ERROR_CODE = "ValidationError";
 
-    // Helper Method To read message from messages.properties file -- STARTS--
-
-    public String getMessage(String code, Object[] args, String defaultMessage, Locale locale) {
-        return messageSource.getMessage(code, args, defaultMessage, locale);
-    }
-
-    public String getMessage(String code, Object[] args, Locale locale) throws NoSuchMessageException {
-        return messageSource.getMessage(code, args, locale);
-    }
-
-    public String getMessage(MessageSourceResolvable resolvable, Locale locale) throws NoSuchMessageException {
-        return messageSource.getMessage(resolvable, locale);
-    }
-
-    public String getMessage(String messageKey) {
-        return getMessage(messageKey, EMPTY);
-    }
-
-    public String getMessage(String messageKey, Object... args) {
-        return messageSource.getMessage(messageKey, args, LocaleContextHolder.getLocale());
-    }
-
-    // Helper Method To read message from messages.properties file -- ENDS--
-
+    private MessageHelperServiceImpl messageSource;
 
     // Helper Method To Handle Exception -- STARTS--
     @ExceptionHandler({HttpMessageNotReadableException.class})
@@ -69,7 +40,7 @@ public class BaseController {
         log.error("******** Inside HttpMessageNotReadableException Handler ************");
         ResponseDTO<String> responseDTO = new ResponseDTO<String>();
         responseDTO.setStatus(Boolean.FALSE);
-        responseDTO.setMessage(getMessage("invalid.request", null, "Please provide valid request", LocaleContextHolder.getLocale()));
+        responseDTO.setMessage(messageSource.getMessage("invalid.request", null, "Please provide valid request", LocaleContextHolder.getLocale()));
         ErrorDTO errorDTO = new ErrorDTO();
         errorDTO.setErrorCode(HttpMessageNotReadableException.class.getSimpleName());
         errorDTO.setErrorMessage(ExceptionUtils.getStackTrace(exception));
@@ -116,7 +87,7 @@ public class BaseController {
         if (StringUtils.isEmpty(errorMessageOrErrorCode)) {
             errorMessageOrErrorCode = "validation.error";
         }
-        return new ErrorDTO(VALIDATION_ERROR_CODE, getMessage(errorMessageOrErrorCode, objectError.getArguments(), errorMessageOrErrorCode, currentLocale));
+        return new ErrorDTO(VALIDATION_ERROR_CODE, messageSource.getMessage(errorMessageOrErrorCode, objectError.getArguments(), errorMessageOrErrorCode, currentLocale));
     }
     // Helper Method Error Binding -- ENDS--
 

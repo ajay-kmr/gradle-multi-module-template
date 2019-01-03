@@ -38,8 +38,6 @@ public abstract class BaseRepoService<T extends BaseEntity, ID extends Serializa
     private static final String VALIDATION_ERROR_CODE = "ValidationError";
     @PersistenceContext
     protected EntityManager entityManager;
-    @Autowired
-    private MessageSource messageSource;
 
     protected abstract JpaRepository<T, ID> getRepository();
 
@@ -232,27 +230,5 @@ public abstract class BaseRepoService<T extends BaseEntity, ID extends Serializa
         return Optional.ofNullable(collection)
                 .map(Collection::stream)
                 .orElse(Stream.empty());
-    }
-
-    // Helper Method To read message from messages.properties file -- STARTS--
-
-    public String getMessage(String code, Object[] args, String defaultMessage, Locale locale) {
-        return messageSource.getMessage(code, args, defaultMessage, locale);
-    }
-
-    public String getMessage(String code, Object[] args, Locale locale) throws NoSuchMessageException {
-        return messageSource.getMessage(code, args, locale);
-    }
-
-    public String getMessage(MessageSourceResolvable resolvable, Locale locale) throws NoSuchMessageException {
-        return messageSource.getMessage(resolvable, locale);
-    }
-
-    public String getMessage(String messageKey) {
-        return getMessage(messageKey, EMPTY);
-    }
-
-    public String getMessage(String messageKey, Object... args) {
-        return messageSource.getMessage(messageKey, args, LocaleContextHolder.getLocale());
     }
 }

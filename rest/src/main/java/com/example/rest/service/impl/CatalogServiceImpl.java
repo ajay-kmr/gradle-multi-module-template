@@ -4,31 +4,33 @@ import com.example.commonmodel.dto.CatalogDTO;
 import com.example.commonmodel.dto.DataTableRequestDTO;
 import com.example.commonmodel.dto.DataTableResponseDTO;
 import com.example.commonmodel.dto.ResponseDTO;
+import com.example.commonmodel.service.MessageHelperServiceImpl;
 import com.example.dao.databinder.CatalogDataBinder;
 import com.example.dao.entity.Catalog;
 import com.example.dao.repoService.CatalogRepoService;
 import com.example.rest.service.CatalogService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CatalogServiceImpl extends BaseServiceImpl implements CatalogService {
+@AllArgsConstructor
+public class CatalogServiceImpl implements CatalogService {
 
-    @Autowired
-    CatalogRepoService catalogRepoService;
+    private CatalogRepoService catalogRepoService;
+    private MessageHelperServiceImpl messageSource;
 
     @Override
     public ResponseDTO<CatalogDTO> createCatalog(CatalogDTO requestDTO) {
-        ResponseDTO<CatalogDTO> responseDTO = new ResponseDTO<CatalogDTO>(Boolean.FALSE, getMessage("unable.to.save.record"), requestDTO);
+        ResponseDTO<CatalogDTO> responseDTO = new ResponseDTO<CatalogDTO>(Boolean.FALSE, messageSource.getMessage("unable.to.save.record"), requestDTO);
         //TODO:- Validate Catalog eg check for duplicate catalog etc
         Catalog catalog = CatalogDataBinder.bind(requestDTO);
         try {
             catalog = catalogRepoService.save(catalog);
             requestDTO.setId(catalog.getId());
             responseDTO.setStatus(Boolean.TRUE);
-            responseDTO.setMessage(getMessage("record.successfully.saved"));
+            responseDTO.setMessage(messageSource.getMessage("record.successfully.saved"));
         } catch (Exception e) {
             e.printStackTrace();
         }

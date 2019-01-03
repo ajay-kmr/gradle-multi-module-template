@@ -1,36 +1,23 @@
-package com.example.rest.service.impl;
+package com.example.commonmodel.service;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Locale;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
 @CommonsLog
-public class BaseServiceImpl {
-
-    public <T> Stream<T> nullSafeStreamOf(Collection<T> collection) {
-        return Optional.ofNullable(collection)
-                .map(Collection::stream)
-                .orElse(Stream.empty());
-    }
+@AllArgsConstructor
+public class MessageHelperServiceImpl {
 
     private static final String EMPTY = StringUtils.EMPTY;
-
-    @Autowired
-    private MessageSource messageSource;
-
-
-    private static final String VALIDATION_ERROR_CODE = "ValidationError";
+    private final MessageSource messageSource;
 
     // Helper Method To read message from messages.properties file -- STARTS--
 

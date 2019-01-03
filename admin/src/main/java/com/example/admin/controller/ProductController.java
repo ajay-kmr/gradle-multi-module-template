@@ -6,19 +6,19 @@ import com.example.commonmodel.dto.DataTableRequestDTO;
 import com.example.commonmodel.dto.DataTableResponseDTO;
 import com.example.commonmodel.dto.ProductDTO;
 import com.example.commonmodel.dto.ResponseDTO;
+import lombok.AllArgsConstructor;
 import lombok.extern.apachecommons.CommonsLog;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("v1/product")
 @CommonsLog
-public class ProductController extends BaseController {
+@RestController
+@AllArgsConstructor
+@RequestMapping("v1/product")
+public class ProductController {
 
-    @Autowired
-    ProductService productService;
+    private ProductService productService;
 
     @ResponseBody
     @RequestMapping(value = "/create", method = RequestMethod.POST)
