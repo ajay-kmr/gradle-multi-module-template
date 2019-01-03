@@ -4,6 +4,5 @@ dependencies {
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     compile('org.projectlombok:lombok')
-    compile project(':common-model')
     compile project(':dao')
 }
